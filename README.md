@@ -6,6 +6,8 @@ cd text-utils
 
 npm install
 
+npm install react-router-dom
+
 npm run
 
 Now you will get Top Updated news daily .
