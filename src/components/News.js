@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
-
 import InfiniteScroll from "react-infinite-scroll-component";
-
 
 export class News extends Component {
     static defaultProps = {
@@ -31,24 +29,32 @@ export class News extends Component {
         document.title = `News  Daily - ${this.props.category}`;
     }
     async updateNews() {
+        this.props.setProgress(10);
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=dbe57b028aeb41e285a226a94865f7a7&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true });
         let data = await fetch(url);
+        this.props.setProgress(30);
         let parsedData = await data.json()
+        this.props.setProgress(70);
         this.setState({
             articles: parsedData.articles,
             totalResults: parsedData.totalResults,
             loading: false
         })
+        this.props.setProgress(100);
     }
     async componentDidMount(){
+        this.props.setProgress(10);
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=25b6c2b2e8fc40ddb3e1fa602745b94c&page=1&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
-        let parsedData = await data.json()  
+        this.props.setProgress(30);
+        let parsedData = await data.json()
+        this.props.setProgress(70);
         //console.log(parsedData);
         this.setState({ articles: parsedData.articles,
                         totalResults: parsedData.totalResults,
                         loading: false })
+        this.props.setProgress(100);
     }
     handlePrevClick = async ()=>{
         console.log("Previous");

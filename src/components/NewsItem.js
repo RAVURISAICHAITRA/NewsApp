@@ -7,7 +7,12 @@ export class NewsItem extends Component {
         return (
             <div className="my-3">
                 <div className="card" >
-                    <span class="position-absolute top-0 translate-middle badge rounded-pill bg-dark" style={{left:'90%',zIndex:1}}>{source}</span>
+                    <div style={{display:'flex',
+                justifyContent:'flex-end',
+                Position : 'absolute',
+                right:0}}>
+                    <span className="badge rounded-pill bg-dark" >{source}</span>
+                    </div>
                     <img src={!imageUrl ? 'https://images.hindustantimes.com/img/2021/10/05/1600x900/BREAKING_NEWS_1633476699120_1633476704192.jpg': imageUrl} className="card-img-top" alt="..."/>
                     <div className="card-body">
                         <h5 className="card-title">{title}</h5>
