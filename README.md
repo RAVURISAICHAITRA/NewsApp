@@ -8,6 +8,8 @@ npm install
 
 npm install react-router-dom
 
+npm i react-top-loading-bar
+
 npm run
 
 Now you will get Top Updated news daily .
